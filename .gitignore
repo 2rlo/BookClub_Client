@@ -26,3 +26,5 @@ yarn-error.log*
 /.vs
 /config
 /scripts
+/src/data
+/public/img
