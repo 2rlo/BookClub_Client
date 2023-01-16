@@ -3,15 +3,29 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
+import DetailReviewPage from "./views/DetailReviewPage";
+import GroupPage from "./views/GroupPage";
+import LoginPage from "./views/LoginPage";
+import MainPage from "./views/MainPage";
+import MakeGroupPage from "./views/MakeGroupPage";
+import MyPage from "./views/MyPage";
+import RegisterPage from "./views/RegisterPage";
+import WriteUpPage from "./views/WriteUpPage";
 
 function App() {
   return (
     <Router>
-      <div className="bg-yellow-500">
-        <p className="h-10 x-10 to-green-700">tailwindCss</p>
-      </div>
+      <Routes>
+        <Route path="/" element = {<MainPage/>}/>
+        <Route path="/login" element = {<LoginPage/>}/>
+        <Route path="/register" element={<RegisterPage/>}/>
+        <Route path="/group/:groupId" element={<GroupPage/>}/>
+        <Route path="/makeGroup" element={<MakeGroupPage/>}/>
+        <Route path="/mypage/:userId" element={<MyPage/>}/>
+        <Route path="/post" element={<WriteUpPage/>}/>
+        <Route path="/post/:postId" element={<DetailReviewPage/>}/>
+      </Routes>
     </Router>
   );
 }
