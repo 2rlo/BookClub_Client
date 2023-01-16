@@ -10,6 +10,7 @@ import ReduxThunk from 'redux-thunk';
 import { createStore } from 'redux';
 import {applyMiddleware} from 'redux';
 import Reducer from './_reducers';
+import "./styles/output.css";
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore)
 
