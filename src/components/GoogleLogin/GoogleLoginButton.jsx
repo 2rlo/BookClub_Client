@@ -49,7 +49,7 @@ function GoogleLoginButton() {
                     onClick={loginButtonClick}
                 >
                     <svg
-                        class="w-4 h-4 mr-2 -ml-1"
+                        className="w-4 h-4 mr-2 -ml-1"
                         aria-hidden="true"
                         focusable="false"
                         data-prefix="fab"
@@ -66,7 +66,7 @@ function GoogleLoginButton() {
                     Sign in with Google
                 </button>
             </div>
-            <div className="z-10 flex align-center justify-center">
+            <div className="z-10 fixed w-3/5 m-[20%]">
                 {modalOpen ? <GoogleLoginErrorModal setModalOpen={setModalOpen} /> : null}
             </div>
         </>
