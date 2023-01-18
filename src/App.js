@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import DetailReviewPage from "./views/DetailReviewPage";
+import GoogleLoginCallbackPage from './views/GoogleLoginCallbackPage';
 import GroupPage from "./views/GroupPage";
 import LoginPage from "./views/LoginPage";
 import MainPage from "./views/MainPage";
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element = {<MainPage/>}/>
         <Route path="/login" element = {<LoginPage/>}/>
+        <Route path="/callback" element = {<GoogleLoginCallbackPage/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
         <Route path="/group/:groupId" element={<GroupPage/>}/>
         <Route path="/makeGroup" element={<MakeGroupPage/>}/>
