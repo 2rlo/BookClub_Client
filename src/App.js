@@ -19,6 +19,7 @@ function App() {
   return (
     <Router>
       <Navbar></Navbar>
+      <div className = "mt-28">
       <Routes>
         <Route path="/" element = {<MainPage/>}/>
         <Route path="/login" element = {<LoginPage/>}/>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/post" element={<WriteUpPage/>}/>
         <Route path="/post/:postId" element={<DetailReviewPage/>}/>
       </Routes>
+      </div>
     </Router>
   );
 }

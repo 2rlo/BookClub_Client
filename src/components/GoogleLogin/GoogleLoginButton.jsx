@@ -17,7 +17,7 @@ function GoogleLoginButton() {
     const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_CLIENTID}&redirect_uri=http://localhost:3000/callback&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
 
     const loginButtonClick = () => {
-        if (sessionStorage == null)
+        if (sessionStorage.getItem("user_token") == null)
             window.location.href = GOOGLE_LOGIN_URL;
         else {
             const user_token = sessionStorage.getItem("user_token");
