@@ -33,9 +33,10 @@ export function GoogleLoginCallback() {
     }
 
     const postUserToken = async (props) => {
+        console.log(props)
         await axios.get(`${process.env.REACT_APP_SERVER}/v1/users/me`, {
             headers: {
-                "Authorization": "Bearer" + props.user_token,
+                "Authorization": "Bearer " + props
             }
         })
             .then((res) => {
