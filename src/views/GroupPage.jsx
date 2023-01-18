@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import ReviewList from "../components/ReviewList/ReviewList";
 
 function GroupPage() {
+    const navigate = useNavigate();
+
+    const user_token = sessionStorage.getItem("user_token");
+
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        getAllPosts();
+    },[]);
+
+    const getAllPosts = async () => {
+        await axios.get(`${process.env.REACT_APP_SERVER}/v1/posts?size=10&page=0&sort=createdDate,desc`, {
+            headers: {
+                "Authorization": "Bearer " + user_token
+            }
+        })
+            .then((res) => {
+                console.log(res);
+                console.log(res.data.response.content);
+                setReviews(res.data.response.content);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     return (
-        <div></div>
-        // group information 
-            // image, name, description, current/limit, invite button
-        // review list
+        <div>
+            <ReviewList reviews={reviews}
+                onClickItem={(item) => {
+                    navigate(`/blog/:${item._id}`)
+                }}></ReviewList>
+        </div>
     )
 }
 

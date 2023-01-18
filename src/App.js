@@ -25,7 +25,7 @@ function App() {
         <Route path="/login" element = {<LoginPage/>}/>
         <Route path="/callback" element = {<GoogleLoginCallbackPage/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
-        <Route path="/group/:groupId" element={<GroupPage/>}/>
+        <Route path="/group" element={<GroupPage/>}/>
         <Route path="/makeGroup" element={<MakeGroupPage/>}/>
         <Route path="/mypage/:userId" element={<MyPage/>}/>
         <Route path="/post" element={<WriteUpPage/>}/>
