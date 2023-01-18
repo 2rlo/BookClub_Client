@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
 import DetailReviewPage from "./views/DetailReviewPage";
 import GoogleLoginCallbackPage from './views/GoogleLoginCallbackPage';
 import GroupPage from "./views/GroupPage";
@@ -17,6 +18,7 @@ import WriteUpPage from "./views/WriteUpPage";
 function App() {
   return (
     <Router>
+      <Navbar></Navbar>
       <Routes>
         <Route path="/" element = {<MainPage/>}/>
         <Route path="/login" element = {<LoginPage/>}/>
