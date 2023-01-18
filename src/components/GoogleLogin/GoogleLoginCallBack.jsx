@@ -1,9 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import GoogleLoginErrorModal from "./GoogleLoginErrorModal";
 
 export function GoogleLoginCallback() {
     const navigate = useNavigate();
+
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const showModal = () => {
+        setModalOpen(true);
+    }
+
+    let sessionStorage = window.sessionStorage;
 
     const params = new URLSearchParams(window.location.search);
 
@@ -11,12 +20,9 @@ export function GoogleLoginCallback() {
 
     useEffect(() => {
         getAccessToken();
-        navigate("/");
     });
 
     const postAccessToken = async (props) => {
-        console.log(props);
-        console.log(JSON.stringify(props));
         await axios.post(`${process.env.REACT_APP_SERVER}/v1/auth/login/google`, JSON.stringify(props), {
             headers: {
                 "Content-Type": "application/json"
@@ -25,10 +31,13 @@ export function GoogleLoginCallback() {
             .then((res) => {
                 console.log(res.data.response.token);
                 const user_token = res.data.response.token;
+                sessionStorage.setItem("user_token", user_token);
+
                 postUserToken(user_token);
             })
             .catch((err) => {
                 console.log(err);
+                showModal();
             });
     }
 
@@ -41,9 +50,11 @@ export function GoogleLoginCallback() {
         })
             .then((res) => {
                 console.log(res);
+                navigate("/");
             })
             .catch((err) => {
                 console.log(err);
+                showModal();
             });
     }
 
@@ -78,6 +89,7 @@ export function GoogleLoginCallback() {
                 </svg>
                 <span className="sr-only">Loading...</span>
             </div>
+        {modalOpen ? <GoogleLoginErrorModal setModalOpen={setModalOpen} /> : null}
         </div>
     )
 }
