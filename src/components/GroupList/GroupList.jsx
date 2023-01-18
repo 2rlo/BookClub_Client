@@ -3,8 +3,7 @@ import GroupItem from "./GroupItem";
 
 function GroupList(props) {
     const { groups, onClickItem } = props;
-    console.log(groups);
-
+    
     return (
         <div class = "flex-col items-start justify-center p-16 m-3">
             {groups.map((group, index) => {

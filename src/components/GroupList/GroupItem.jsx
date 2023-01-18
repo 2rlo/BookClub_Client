@@ -2,7 +2,6 @@ import React from "react";
 
 function GroupItem(props) {
     const { onClick, group } = props;
-    console.log(group);
 
     return (
         <div className="px-9 py-6 max-w-7xl mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 my-5" onClick = {onClick}>
