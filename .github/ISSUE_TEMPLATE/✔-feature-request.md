@@ -1,8 +1,8 @@
 ---
-name: "\U0001F41E BUG"
-about: BUG 발생 시 작성
-title: ''
-labels: bug
+name: "✔ Feature request"
+about: Feature 작업 사항
+title: 'Feat: '
+labels: feat
 assignees: 2rlo
 
 ---
@@ -12,7 +12,7 @@ assignees: 2rlo
 
 ## To-Do
 - [ ] -
-- [ ] -
+- [ ] - 
 
 ## ETC
 기타 설명
