@@ -34,7 +34,7 @@ function GroupPage() {
         <div>
             <ReviewList reviews={reviews}
                 onClickItem={(item) => {
-                    navigate(`/blog/:${item._id}`)
+                    navigate(`/post/${item.id}`)
                 }}></ReviewList>
         </div>
     )
