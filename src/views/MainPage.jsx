@@ -14,7 +14,6 @@ function MainPage() {
                 navigate(`/group/${item._id}`);
             }}
         />
-        // or group creat button
     )
 }
 
