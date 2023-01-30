@@ -6,7 +6,7 @@ import GoogleLoginErrorModal from "../components/GoogleLogin/GoogleLoginErrorMod
 function LoginPage() {
     return (
         <>
-            <div className="flex flex-col justify-center items-center mt-60">
+            <div className="flex flex-col justify-center items-center mt-64 relative">
                 <GoogleLoginButton></GoogleLoginButton>
                 <GoogleSignUpButton></GoogleSignUpButton>
             </div>

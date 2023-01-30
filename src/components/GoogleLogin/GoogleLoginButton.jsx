@@ -26,6 +26,7 @@ function GoogleLoginButton() {
     }
 
     const postUserRefreshToken = async (props) => {
+        console.log(props);
         await axios.get(`${process.env.REACT_APP_SERVER}/v1/auth/refresh`, {
             headers: {
                 "Authorization": "Bearer " + props
@@ -66,7 +67,7 @@ function GoogleLoginButton() {
                     Sign in with Google
                 </button>
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2">
+            <div className="absolute z-50">
                 {modalOpen && <GoogleLoginErrorModal/>}
             </div>
         </>

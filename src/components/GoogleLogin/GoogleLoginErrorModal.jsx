@@ -5,7 +5,7 @@ function GoogleLoginErrorModal({setModalOpen}) {
     const navigate = useNavigate();
 
     const modalClick = () => {
-        navigate("/login");
+        window.location.replace("/login");
     }
 
     const closeModal = () => {
