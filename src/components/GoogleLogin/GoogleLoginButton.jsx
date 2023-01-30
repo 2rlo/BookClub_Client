@@ -66,8 +66,8 @@ function GoogleLoginButton() {
                     Sign in with Google
                 </button>
             </div>
-            <div className="z-10 fixed w-3/5 m-[20%]">
-                {modalOpen ? <GoogleLoginErrorModal setModalOpen={setModalOpen} /> : null}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2">
+                {modalOpen && <GoogleLoginErrorModal/>}
             </div>
         </>
     )

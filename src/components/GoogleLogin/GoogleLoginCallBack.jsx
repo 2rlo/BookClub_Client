@@ -90,8 +90,8 @@ export function GoogleLoginCallback() {
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>
-            <div className="z-10 flex align-center justify-center">
-                {modalOpen ? <GoogleLoginErrorModal setModalOpen={setModalOpen} /> : null}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2">
+                {modalOpen && <GoogleLoginErrorModal />}
             </div>
         </>
     )
