@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import DetailReviewPage from "./views/DetailReviewPage";
+import EditReviewPage from './views/EditReviewPage';
 import GoogleLoginCallbackPage from './views/GoogleLoginCallbackPage';
 import GroupPage from "./views/GroupPage";
 import LoginPage from "./views/LoginPage";
@@ -19,7 +20,7 @@ function App() {
   return (
     <Router>
       <Navbar></Navbar>
-      <div className = "mt-28">
+      <div className = "mt-20">
       <Routes>
         <Route path="/" element = {<MainPage/>}/>
         <Route path="/login" element = {<LoginPage/>}/>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/mypage/:userId" element={<MyPage/>}/>
         <Route path="/post" element={<WriteUpPage/>}/>
         <Route path="/post/:postId" element={<DetailReviewPage/>}/>
+        <Route path="/edit/:postId" element={<EditReviewPage/>}/>
       </Routes>
       </div>
     </Router>
