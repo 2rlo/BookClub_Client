@@ -69,7 +69,7 @@ export function GoogleLoginCallback() {
                 console.log(res);
                 const data = res.data;
                 if(res.data.access_token){
-                    localStorage.setItem('login-token', res.data.access_token);
+                    localStorage.setItem('login_token', res.data.access_token);
                 }
 
                 postAccessToken(data);
