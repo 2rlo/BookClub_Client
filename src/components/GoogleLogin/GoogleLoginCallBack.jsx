@@ -6,8 +6,6 @@ import GoogleLoginErrorModal from "./GoogleLoginErrorModal";
 export function GoogleLoginCallback() {
     const navigate = useNavigate();
 
-    let sessionStorage = window.sessionStorage;
-
     const [modalOpen, setModalOpen] = useState(false);
 
     const showModal = () => {
@@ -29,9 +27,9 @@ export function GoogleLoginCallback() {
             }
         })
             .then((res) => {
-                console.log(res.data.response.token);
+                console.log(res);
                 const user_token = res.data.response.token;
-                sessionStorage.setItem("user_token", user_token);
+                localStorage.setItem("user_token", user_token);
 
                 postUserToken(user_token);
             })
@@ -73,7 +71,9 @@ export function GoogleLoginCallback() {
             .then((res) => {
                 console.log(res);
                 const data = res.data;
-                console.log(data);
+                if(res.data.access_token){
+                    localStorage.setItem('login-token', res.data.access_token);
+                }
 
                 postAccessToken(data);
             });

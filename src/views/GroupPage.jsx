@@ -6,7 +6,7 @@ import ReviewList from "../components/ReviewList/ReviewList";
 function GroupPage() {
     const navigate = useNavigate();
 
-    const user_token = sessionStorage.getItem("user_token");
+    const user_token = localStorage.getItem("user_token");
 
     const [reviews, setReviews] = useState([]);
 

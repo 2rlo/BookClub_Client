@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
     const navigate = useNavigate();
 
-    const user_token = sessionStorage.getItem("user_token");
+    const user_token = localStorage.getItem("user_token");
 
     const onClickLog = () => {
         if (user_token !== null) {
-            sessionStorage.removeItem("user_token");
+            localStorage.removeItem("user_token");
             navigate("/");
         }
     }

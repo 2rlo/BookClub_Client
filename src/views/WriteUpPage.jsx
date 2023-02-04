@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function WriteUpPage() {
-    const sessionStorage = window.sessionStorage;
-
-    const user_token = sessionStorage.getItem("user_token")
+    const user_token = localStorage.getItem("user_token")
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");

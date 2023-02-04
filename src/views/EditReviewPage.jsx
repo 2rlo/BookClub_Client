@@ -3,9 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditReviewPage() {
-    const sessionStorage = window.sessionStorage;
-
-    const user_token = sessionStorage.getItem("user_token");
+    const user_token = localStorage.getItem("user_token");
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
