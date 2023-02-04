@@ -30,8 +30,9 @@ export function GoogleLoginCallback() {
                 console.log(res);
                 const user_token = res.data.response.token;
                 localStorage.setItem("user_token", user_token);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${user_token}`;
 
-                postUserToken(user_token);
+                postUserToken();
             })
             .catch((err) => {
                 console.log(err);
@@ -39,12 +40,8 @@ export function GoogleLoginCallback() {
             });
     }
 
-    const postUserToken = async (props) => {
-        console.log(props)
+    const postUserToken = async () => {
         await axios.get(`${process.env.REACT_APP_SERVER}/v1/users/me`, {
-            headers: {
-                "Authorization": "Bearer " + props
-            }
         })
             .then((res) => {
                 console.log(res);

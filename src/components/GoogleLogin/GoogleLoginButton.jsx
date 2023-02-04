@@ -18,8 +18,8 @@ function GoogleLoginButton() {
         if (localStorage.getItem("user_token") == null)
             window.location.href = GOOGLE_LOGIN_URL;
         else {
-            const user_token = localStorage.getItem("user_token");
-            postUserRefreshToken(user_token);
+            const login_token = localStorage.getItem("login_token");
+            postUserRefreshToken(login_token);
         }
     }
 
