@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function GoogleSignUpButton() {
     const navigate = useNavigate();
 
-    const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_CLIENTID}&redirect_uri=http://localhost:3000/callback&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
+    const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_CLIENTID}&redirect_uri=http://localhost:3000/registerCallback&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
 
     const loginButtonClick = () => {
         window.location.href = GOOGLE_LOGIN_URL;
