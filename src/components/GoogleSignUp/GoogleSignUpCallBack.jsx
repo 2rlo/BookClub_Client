@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import GoogleLoginErrorModal from "./GoogleLoginErrorModal";
+import GoogleSignUpErrorModal from "./GoogleSignUpErrorModal";
 
-export function GoogleLoginCallback() {
+export function GoogleSignUpCallBack() {
     const navigate = useNavigate();
 
-    const GOOGLE_REGISTER_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_CLIENTID}&redirect_uri=http://localhost:3000/registerCallback&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
-
     const [modalOpen, setModalOpen] = useState(false);
-    const [modalContent, setModalContent] = useState("google social login again.");
-    const [modalLink, setModalLink] = useState("/login");
 
     const showModal = () => {
         setModalOpen(true);
@@ -21,34 +17,9 @@ export function GoogleLoginCallback() {
     const authorizationCode = params.get("code");
 
     useEffect(() => {
-        getAccessToken();     
-    });
+        getAccessToken();
+    }, []);
 
-    const userLogin = async (props) => {
-        await axios.post(`${process.env.REACT_APP_SERVER}/members/login`, {
-            "token": localStorage.getItem("google_token")
-        })
-            .then((res) => {
-                console.log(res);
-                localStorage.setItem("access_token", res.data.response.accessToken);
-                localStorage.setItem("refresh_token", res.data.response.refreshToken);
-                navigate("/");
-            })
-            .catch((err) => {
-                console.log(err);
-                if (err.response.data.error.errorCode == "MEMBER_NOT_FOUND"){
-                    setModalContent("Sign Up first");
-                    setModalLink(GOOGLE_REGISTER_URL);
-                    showModal();
-                    
-                }else 
-                    showModal();
-                localStorage.removeItem("access_token");
-                localStorage.removeItem("refresh_token");
-                
-            });
-    }
-    
     const getAccessToken = async () => {
         await axios.post(
             "https://oauth2.googleapis.com/token",
@@ -57,23 +28,14 @@ export function GoogleLoginCallback() {
                 client_id: process.env.REACT_APP_CLIENTID,
                 client_secret: process.env.REACT_APP_CLIENTSECRET,
                 grant_type: "authorization_code",
-                redirect_uri: "http://localhost:3000/callback",
+                redirect_uri: "http://localhost:3000/registerCallback",
                 access_type: "offline",
             },
         )
             .then((res) => {
                 console.log(res);
-                if(localStorage.getItem("google_token")){
-                    localStorage.removeItem("google_token");
-                    console.log("remove");
-                }
                 localStorage.setItem("google_token", res.data.access_token);
-                console.log(localStorage.getItem("google_token"));
-
-                userLogin();
-            })
-            .catch((err) => {
-                console.log(err);
+                navigate("/register");
             });
     }
 
@@ -89,13 +51,10 @@ export function GoogleLoginCallback() {
                 </div>
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2">
-                {modalOpen && <GoogleLoginErrorModal
-                    content = {modalContent}
-                    link = {modalLink}
-                 />}
+                {modalOpen && <GoogleSignUpErrorModal />}
             </div>
         </>
     )
 }
 
-export default GoogleLoginCallback;
+export default GoogleSignUpCallBack;

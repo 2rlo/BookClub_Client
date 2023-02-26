@@ -1,5 +1,5 @@
 import React from "react";
-import GoogleSignUpCallBack from "../components/GoogleSignUp/CoocleSignUpCallBack";
+import GoogleSignUpCallBack from "../components/GoogleSignUp/GoogleSignUpCallBack";
 
 function GoogleSignUpCallbackPage() {
     return (

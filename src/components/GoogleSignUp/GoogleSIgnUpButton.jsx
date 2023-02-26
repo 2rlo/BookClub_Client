@@ -12,7 +12,7 @@ function GoogleSignUpButton() {
 
     return (
         <button
-            className="text-white bg-red-400 hover:bg-red-500/90 focus:ring-4  focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+            className="text-white bg-red-400 hover:bg-red-500/90 focus:ring-4  focus:outline-none focus:ring-[#4285F4]/50 font-bold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
             onClick={loginButtonClick}
         >
             <svg

@@ -15,23 +15,32 @@ function GoogleLoginButton() {
     const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_CLIENTID}&redirect_uri=http://localhost:3000/callback&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
 
     const loginButtonClick = () => {
-        if (localStorage.getItem("user_token") == null)
+        if (localStorage.getItem("access_token") == null)
             window.location.href = GOOGLE_LOGIN_URL;
         else {
-            const login_token = localStorage.getItem("login_token");
-            postUserRefreshToken(login_token);
+            const refresh_token = localStorage.getItem("refresh_token");
+            postUserRefreshToken(refresh_token);
         }
     }
 
     const postUserRefreshToken = async (props) => {
         console.log(props);
-        await axios.get(`${process.env.REACT_APP_SERVER}/v1/auth/refresh`, {
-            headers: {
-                "Authorization": "Bearer " + props
+        await axios.post(`${process.env.REACT_APP_SERVER}/v1/auth/refresh`,
+            {
+                "accessToken": localStorage.getItem("access_token"),
+            },
+            {
+                headers: {
+                    "Authorization": "Bearer " + props,
+                    "Content-Type": "application/json"
+                }
             }
-        })
+        )
+
             .then((res) => {
                 console.log(res);
+                localStorage.setItem("access_token", res.data.response.accessToken);
+                localStorage.setItem("refresh_token", res.data.response.refreshToken);
                 navigate("/");
             })
             .catch((err) => {
@@ -44,7 +53,7 @@ function GoogleLoginButton() {
         <>
             <div>
                 <button
-                    className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+                    className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-bold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 "
                     onClick={loginButtonClick}
                 >
                     <svg
@@ -66,7 +75,7 @@ function GoogleLoginButton() {
                 </button>
             </div>
             <div className="absolute z-50">
-                {modalOpen && <GoogleLoginErrorModal/>}
+                {modalOpen && <GoogleLoginErrorModal />}
             </div>
         </>
     )
