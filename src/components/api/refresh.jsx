@@ -8,12 +8,10 @@ refresh.interceptors.request.use(
     function (config) {
         const access_token = localStorage.getItem("access_token");
         if (!access_token) {
-            config.headers["accessToken"] = null;
-            config.headers["refreshToken"] = null;
+            config.headers["Authorization"] = null;
             return config
         }
-        config.headers["accessToken"] = localStorage.getItem("access_token");
-        config.headers["refreshToken"] = localStorage.getItem("refresh_token");
+        config.headers["Authorization"] = `Bearer ${localStorage.getItem("access_token")}`;
         return config
     }
 )
@@ -26,12 +24,15 @@ refresh.interceptors.response.use(
         if (error.response.data.error.errorCode == "EXPIRED_JWT_TOKEN") {
             try {
                 const originalRequest = error.config;
-                const data = await refresh.post(`${process.env.REACT_APP_SERVER}/members/reissue`)
+                const data = await refresh.post(`${process.env.REACT_APP_SERVER}/members/reissue`, {
+                    "accessToken": localStorage.getItem("access_token"),
+                    "refreshToken": localStorage.getItem("refresh_token"),
+                })
                 if (data) {
                     localStorage.setItem("access_token", data.data.response.accessToken);
                     localStorage.setItem("refresh_token", data.data.response.refreshToken);
-                    originalRequest.headers['accessToken'] = data.data.response.accessToken;
-                    originalRequest.headers['refreshToken'] = data.data.response.refreshToken;
+                    originalRequest.headers['Authorization'] = `Bearer ${data.data.response.accessToken}`;
+
                     return await refresh.request(originalRequest);
                 }
             } catch (error) {
