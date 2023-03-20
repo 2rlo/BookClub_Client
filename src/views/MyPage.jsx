@@ -134,6 +134,7 @@ function MyPage() {
             </div>
             <div className="absolute top-20 left-1/2 -translate-x-1/2 translate-y-1/2">
                 {modalOpen && <NicknameModal
+                    setModalOpen={setModalOpen}
                     old_nickname={nickname}
                 />}
             </div>
