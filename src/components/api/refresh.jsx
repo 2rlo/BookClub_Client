@@ -12,19 +12,23 @@ refresh.interceptors.request.use(
             return config
         }
         config.headers["Authorization"] = `Bearer ${localStorage.getItem("access_token")}`;
+
         return config
     }
 )
 
 refresh.interceptors.response.use(
     function (response) {
+        console.log(response);
         return response
     },
     async function (error) {
-        if (error.response.data.error.errorCode == "EXPIRED_JWT_TOKEN") {
+        console.log(error);
+        
+        if (error.response.data.error.errorCode && error.response.data.error.errorCode === "EXPIRED_JWT_TOKEN") {
             try {
                 const originalRequest = error.config;
-                const data = await refresh.post(`${process.env.REACT_APP_SERVER}/members/reissue`, {
+                const data = await refresh.post(`/members/reissue`, {
                     "accessToken": localStorage.getItem("access_token"),
                     "refreshToken": localStorage.getItem("refresh_token"),
                 })
