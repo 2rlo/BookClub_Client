@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# 책 추천 기능이 있는 독서 모임 웹 사이트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 기능
+1. 소셜 로그인
+   1-1. 구글 소셜 로그인
+   1-2. 구글 소셜 로그인을 통한 자체 사이트 회원가입
+2. 모임 생성과 가입
+  2-1. 모임 이름, 소개, 최대 인원, 이미지 설정하여 클럽 생성
+  2-2. 클럽 초대 링크를 통한 클럽 가입
+    1) 링크 이동 시 클럽 가입이 가능한 페이지로 넘어감
+    2) 가입 요청 에러 발생 시(이미 존재하는 멤버, 최대 인원 초과) 토스트 메시지 생성 
+3. 리뷰 및 코멘트 작성
+  3-1. 리뷰 작성: 책 검색(책 선택), 제목, 내용, 이미지 포함
+  3-2. 책 검색: 책 제목으로 검색하여 책 선택
+  3-3. 리뷰 수정: 내용, 이미지, 책 변경 가능
+  3-4. 댓글 작성: 리뷰 상세 페이지에서 댓글 작성 가능
+  3-5. 댓글 수정
+4. 책 검색 / 책 추천
+  4-1. 국립 중앙 도서관 도서별 상세정보 CSV 데이터 사용
+  4-2. Elasticsearch와 Logstash 사용
+  4-3. 책 검색: 책 제목이나 isbn을 키워드로 사용하여 유사한 순서대로 출력
+  4-4. 책 추천: 책 소개를 키워드로 검색하여 유사한 순서대로 출력
+5. 마이페이지
+  5-1. 유저 정보와 가입 모임 리스트
+  5-2. 닉네임 변경 모달
+  5-3. 작성한 리뷰 리스트
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 웹페이지 구조
+![image](https://github.com/user-attachments/assets/7165ade4-6c26-4484-8442-511e7839347c)
